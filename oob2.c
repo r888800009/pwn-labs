@@ -19,6 +19,10 @@ int main(int argc, char *argv[]) {
   long *ptr = &index;
   long aaa =123;
 
+  setvbuf(stdin, NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
+  setvbuf(stderr, NULL, _IONBF, 0);
+
   printf("gift %p\n", shellcode);
   printf("ptr %p\n", ptr);
 
