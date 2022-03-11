@@ -6,6 +6,10 @@ int main(int argc, char **argv) {
   srand(time(NULL));
   unsigned int a, b;
 
+  setvbuf(stdin, NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
+  setvbuf(stderr, NULL, _IONBF, 0);
+
   for (int i = 0; i < 100; i++) {
     a = rand();
 
@@ -22,3 +26,4 @@ int main(int argc, char **argv) {
   system("/bin/sh");
   return 0;
 }
+
