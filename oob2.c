@@ -15,22 +15,20 @@ int index_get() {
 
 // gcc oob2.c -o oob2
 int main(int argc, char *argv[]) {
-  long index = 0;
-  long *ptr = &index;
-  long aaa =123;
+  long array[2] = {0};
+  long index = 123;
 
   setvbuf(stdin, NULL, _IONBF, 0);
   setvbuf(stdout, NULL, _IONBF, 0);
   setvbuf(stderr, NULL, _IONBF, 0);
 
   printf("gift %p\n", shellcode);
-  printf("ptr %p\n", ptr);
+  printf("ptr %p\n", array);
 
   index = index_get();
 
   printf("set:");
-  scanf("%p", &ptr[index]);
+  scanf("%p", &array[index]);
 
-  aaa = 0;
-  return aaa;
+  return index;
 }
