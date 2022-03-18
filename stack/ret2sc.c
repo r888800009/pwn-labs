@@ -16,6 +16,8 @@ void init() {
 
   data = mmap(NULL, 0x1000, PROT_READ | PROT_WRITE | PROT_EXEC,
               MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+
+  memset(data, 0xc3, 0x1000);  // ret
 }
 
 void stack_dump() {
