@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  babybof:
+    build: ./
+    volumes:
+      - ./share:/home/babybof:ro
+      - ./xinetd:/etc/xinetd.d/babybof:ro
+    ports:
+      - "30001:30001"
+    expose:
+      - "30001"
