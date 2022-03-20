@@ -4,6 +4,8 @@
 #include <sys/fcntl.h>
 #include <unistd.h>
 
+const char *author = "r888800009";
+
 void init() {
   setvbuf(stdout, NULL, _IONBF, 0);
   setvbuf(stdin, NULL, _IONBF, 0);
