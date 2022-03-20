@@ -9,7 +9,8 @@ services:
       - ./xinetd:/etc/xinetd.d/readflag:ro
       - ./flag:/flag:ro
     tmpfs:
-      - /dev/shm:mode=700
+      - /dev/shm:mode=700,size=1M
+      - /dev/mqueue:mode=700,size=1M
     ports:
       - "40001:40001"
     expose:
