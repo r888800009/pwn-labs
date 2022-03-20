@@ -6,15 +6,24 @@
 
 const char *author = "r888800009";
 
+int fd, len;
+char flag[100];
+
+void load_flag() {
+  fd = open("/flag", O_RDONLY);
+  len = read(fd, flag, 100);
+  close(fd);
+}
+
 void init() {
   setvbuf(stdout, NULL, _IONBF, 0);
   setvbuf(stdin, NULL, _IONBF, 0);
   setvbuf(stderr, NULL, _IONBF, 0);
 
+  load_flag();
+
   scmp_filter_ctx ctx = seccomp_init(SCMP_ACT_KILL);
 
-  seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(open), 0);
-  seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(openat), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(close), 0);
@@ -33,13 +42,8 @@ void init() {
 }
 
 void readflag() {
-  int fd, len;
-  char flag[100];
   write(1, "flag: ", 6);
-  fd = open("/flag", O_RDONLY);
-  len = read(fd, flag, 100);
   write(1, flag, len);
-  close(fd);
 }
 
 /*
@@ -55,7 +59,7 @@ int main() {
   printf("Return to readflag(): %p\n", readflag);
 
   scanf("%48s", buf);
-
+  close(STDIN_FILENO);
   // readflag();
   // test_exec();
 
