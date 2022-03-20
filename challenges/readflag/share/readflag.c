@@ -54,7 +54,7 @@ int main() {
   init();
   printf("Return to readflag(): %p\n", readflag);
 
-  scanf("%s", buf);
+  scanf("%48s", buf);
 
   // readflag();
   // test_exec();
