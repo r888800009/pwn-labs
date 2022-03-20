@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  readflag:
+    build: ./
+    read_only: true
+    volumes:
+      - ./share:/home/readflag:ro
+      - ./xinetd:/etc/xinetd.d/readflag:ro
+      - ./flag:/flag:ro
+    tmpfs:
+      - /dev/shm:mode=700
+    ports:
+      - "40001:40001"
+    expose:
+      - "40001"
