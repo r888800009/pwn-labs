@@ -28,6 +28,8 @@ void init() {
     perror("seccomp_load");
     exit(1);
   }
+
+  seccomp_release(ctx);
 }
 
 void readflag() {
