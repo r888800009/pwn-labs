@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  rbp_ret_sled:
+    build: ./
+    read_only: true
+    volumes:
+      - ./share:/home/rbp_ret_sled:ro
+      - ./xinetd:/etc/xinetd.d/rbp_ret_sled:ro
+      - ./flag:/flag:ro
+    tmpfs:
+      - /dev/shm:mode=700,size=1M
+      - /dev/mqueue:mode=700,size=1M
+    ports:
+      - "40003:40003"
+    expose:
+      - "40003"

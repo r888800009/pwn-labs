@@ -1,0 +1,13 @@
+service rbp_ret_sled
+{
+    disable = no
+    type = UNLISTED
+    socket_type = stream
+    protocol = tcp
+    server = /home/rbp_ret_sled/run.sh
+    user = rbp_ret_sled
+    port = 40003
+    flags = REUSE
+    bind = 0.0.0.0
+    wait = no
+}
