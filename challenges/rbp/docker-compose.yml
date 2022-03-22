@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  rbp:
+    build: ./
+    read_only: true
+    volumes:
+      - ./share:/home/rbp:ro
+      - ./xinetd:/etc/xinetd.d/rbp:ro
+      - ./flag:/flag:ro
+    tmpfs:
+      - /dev/shm:mode=700,size=1M
+      - /dev/mqueue:mode=700,size=1M
+    ports:
+      - "40002:40002"
+    expose:
+      - "40002"

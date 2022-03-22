@@ -1,0 +1,13 @@
+service rbp
+{
+    disable = no
+    type = UNLISTED
+    socket_type = stream
+    protocol = tcp
+    server = /home/rbp/run.sh
+    user = rbp
+    port = 40002
+    flags = REUSE
+    bind = 0.0.0.0
+    wait = no
+}
