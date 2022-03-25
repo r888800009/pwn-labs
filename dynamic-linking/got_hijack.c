@@ -17,15 +17,15 @@ int main() {
   init();
 
   int index;
-  puts("index:");
+  printf("index:");
   scanf("%d", &index);
 
   printf("data[%d] = %lld\n", index, data[index]);
 
-  puts("overwrite:");
+  printf("overwrite:");
   scanf("%lld", &data[index]);
 
-  printf("printf %d\n", data[index]);
+  printf("printf %p\n", data[index]);
   puts("puts");
   scanf("%d", &index);
   return 0;
