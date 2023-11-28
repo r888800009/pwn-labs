@@ -7,8 +7,20 @@ struct challenge {
     FILE *fp;
 } challenge;
 
+void shellcode() {
+  __asm__("pop %rax");  // fix stack
+  system("/bin/sh");
+}
+
+void shellcode2() {
+  system("/bin/sh");
+}
+
 // gcc baby-file-struct.c -o baby-file-struct
 int main(int argc, char **argv) {
+  printf("shellcode: %p\n", shellcode);
+  printf("shellcode2: %p\n", shellcode2);
+  
   // open /etc/passwd
   challenge.fp = fopen("/etc/passwd", "r");
   
