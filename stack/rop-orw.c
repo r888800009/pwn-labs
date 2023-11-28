@@ -50,6 +50,9 @@ int main(int argc, char **argv) {
   // leak data address
   printf("data: %p\n", data);
 
+  // leak libc address
+    printf("puts libc: %p\n", puts);
+
   // buf overflow
   puts("buf: ");
   read(0, buf, 0x200);
