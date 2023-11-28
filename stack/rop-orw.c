@@ -13,6 +13,7 @@ void init_seccomp(void) {
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(open), 0);
+  seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(openat), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(close), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit), 0);
   seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit_group), 0);
@@ -34,6 +35,8 @@ void init() {
   setvbuf(stderr, NULL, _IONBF, 0);
 }
 
+char data[0x300];
+
 // gcc rop-orw.c -o rop-orw -fno-stack-protector -lseccomp -no-pie
 int main(int argc, char **argv) {
   char buf[0x8];
@@ -43,6 +46,9 @@ int main(int argc, char **argv) {
   // open /etc/passwd
   int fd = open("/etc/passwd", 0);
   close(fd);
+
+  // leak data address
+  printf("data: %p\n", data);
 
   // buf overflow
   puts("buf: ");
