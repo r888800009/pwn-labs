@@ -20,6 +20,8 @@ void shellcode2() {
 int main(int argc, char **argv) {
   printf("shellcode: %p\n", shellcode);
   printf("shellcode2: %p\n", shellcode2);
+  printf("challenge.buf: %p\n", challenge.buf);
+  printf("challenge.fp: %p\n", challenge.fp);
   
   // open /etc/passwd
   challenge.fp = fopen("/etc/passwd", "r");
