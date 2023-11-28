@@ -4,7 +4,7 @@
 
 // gcc stack-pivoting.c -o stack-pivoting -no-pie -fno-stack-protector
 
-char data[0x600] = {0};
+char data[0x2000] = {0};
 
 void init() {
   setvbuf(stdout, NULL, _IONBF, 0);
@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
 
   puts("Welcome to the stack-based buffer overflow challenge!");
   printf("Please enter your data: ");
-  read(0, 0x600 + data, 0x200);
+  read(0, 0x2000 + data, 0x200);
 
   printf("Please enter your password: ");
   read(0, buf, 0x18);

