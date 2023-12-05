@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
 
 int main() {
   printf("%p\n", &system);
-  printf("%p\n", &__free_hook);
 
   char *free_hook_arg = malloc(0x30);
   printf("set free_hook_arg to");
